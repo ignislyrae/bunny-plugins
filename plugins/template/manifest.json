@@ -1,7 +1,7 @@
 {
     "type": "plugin",
     "id": "yourname.template",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "display": {
         "name": "Template Plugin",
         "description": "A plugin for use as a template.",
