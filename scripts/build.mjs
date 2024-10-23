@@ -56,15 +56,15 @@ const manifestWriter = (manifest) => ({
             alwaysFetch: !isProduction
         };
 
-        await mkdir(`./dist/plugins/${manifest.id}`, { recursive: true });
-        await writeFile(`./dist/plugins/${manifest.id}/manifest.json`, JSON.stringify(manifest));
+        await mkdir(`./dist/builds/${manifest.id}`, { recursive: true });
+        await writeFile(`./dist/builds/${manifest.id}/manifest.json`, JSON.stringify(manifest));
         await writeFile("./dist/repo.json", JSON.stringify(repo));
     }
 });
 
 for (const plug of await readdir("./plugins")) {
     const manifest = JSON.parse((await readFile(`./plugins/${plug}/manifest.json`)).toString());
-    const outPath = `./dist/plugins/${manifest.id}/index.js`;
+    const outPath = `./dist/builds/${manifest.id}/index.js`;
 
     const globalMap = {
         "react": "React",
