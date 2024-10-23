@@ -6,6 +6,10 @@ import swc from "rollup-plugin-swc3";
 import { minify } from 'rollup-plugin-esbuild-minify'
 import { existsSync } from "fs";
 
+const REPO_META = {
+    name: "yourusername's repo"
+};
+
 const isProduction = !process.argv.includes("--dev");
 
 const TimeFormatter = new Intl.DateTimeFormat(undefined, {
@@ -51,6 +55,7 @@ const manifestWriter = (manifest) => ({
         manifest.main = "index.js";
         if (!isProduction) manifest.version += "-dev";
 
+        repo.$meta = REPO_META;
         repo[manifest.id] = {
             version: manifest.version,
             alwaysFetch: !isProduction
