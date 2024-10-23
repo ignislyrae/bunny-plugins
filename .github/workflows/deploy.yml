@@ -1,0 +1,53 @@
+name: Build and deploy
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    deploy:
+        environment:
+           name: github-pages
+           url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+          pages: write
+          id-token: write
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: pnpm/action-setup@v4
+              with:
+                version: 9
+                run_install: true
+
+            - name: Build plugin(s)
+              run: pnpm run build
+
+              # Foolproof feature:
+              # - Copies over README so that the root of the deployed website shows it
+              # - Changes 404 page to README so that you don't get lost while clicking links
+              # If you remove this step then you should probably remove the enable_jekyll option in the next one
+            - name: Copy additional files
+              run: |
+                  cp README.md dist/README.md
+                  printf -- "---\npermalink: /404.html\n---\n" > dist/404.md
+                  printf -- "> **Note:** You accessed a link that returned a 404, probably by clicking one of the plugin links.\n\n" >> dist/404.md
+                  cat README.md >> dist/404.md
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+            
+            - name: Build with Jekyll
+              uses: actions/jekyll-build-pages@v1
+              with:
+                source: ./dist
+                
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

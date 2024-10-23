@@ -1,0 +1,17 @@
+{
+    "type": "plugin",
+    "id": "yourname.template",
+    "version": "1.0.0",
+    "display": {
+        "name": "Template Plugin",
+        "description": "A plugin for use as a template.",
+        "authors": [
+            {
+                "name": "You!",
+                "id": "123456789123456"
+            }
+        ]
+    },
+    "main": "src/index.ts",
+    "bunny": {}
+}

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "allowJs": true
+    },
+    "include": [
+        "plugins",
+        "node_modules/bn-types"
+    ]
+}
