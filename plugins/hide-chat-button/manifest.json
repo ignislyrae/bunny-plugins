@@ -1,0 +1,17 @@
+{
+    "type": "plugin",
+    "id": "pylixonly.hidechatbutton",
+    "version": "1.0.0",
+    "display": {
+        "name": "HideChatButton",
+        "description": "Hides some annoying chat buttons.",
+        "authors": [
+            {
+                "name": "pylixonly",
+                "id": "492949202121261067"
+            }
+        ]
+    },
+    "main": "src/index.tsx",
+    "bunny": {}
+}
