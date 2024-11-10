@@ -7,7 +7,7 @@ import { minify } from 'rollup-plugin-esbuild-minify'
 import { existsSync } from "fs";
 
 const REPO_META = {
-    name: "yourusername's repo"
+    name: "pylixonly's repo"
 };
 
 const isProduction = !process.argv.includes("--dev");
