@@ -14,6 +14,7 @@ jobs:
           contents: write
           pages: write
           id-token: write
+          attestations: write
 
         steps:
             - uses: actions/checkout@v4
@@ -46,8 +47,14 @@ jobs:
               with:
                 source: ./dist
                 
-            - name: Upload artifact
+            - name: Upload build artifact
               uses: actions/upload-pages-artifact@v3
+              with:
+                  name: build_outputs
+
+            - uses: actions/attest-build-provenance@v2
+              with:
+                subject-path: build_outputs
 
             - name: Deploy to GitHub Pages
               id: deployment
