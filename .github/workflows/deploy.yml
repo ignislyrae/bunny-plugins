@@ -60,7 +60,7 @@ jobs:
               uses: actions/attest-build-provenance@v2
               with:
                 subject-name: build_outputs
-                subject-digest: 'sha256:${{ steps.artifact-upload.outputs.artifact-id }}'
+                subject-digest: 'sha256:${{ steps.artifact-upload.outputs.artifact-digest }}'
 
             - name: Deploy to GitHub Pages
               id: deployment
