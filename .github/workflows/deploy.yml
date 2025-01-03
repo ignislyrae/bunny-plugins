@@ -50,7 +50,12 @@ jobs:
             - name: Upload build artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  name: build_outputs
+                name: build_outputs
+
+            - name: Download a single artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: build_outputs
 
             - uses: actions/attest-build-provenance@v2
               with:
