@@ -57,9 +57,10 @@ jobs:
               with:
                 name: build_outputs
 
-            - uses: actions/attest-build-provenance@v2
+            - name: Attest
+              uses: actions/attest-build-provenance@v2
               with:
-                subject-path: build_outputs
+                subject-path: build_outputs.zip
 
             - name: Deploy to GitHub Pages
               id: deployment
