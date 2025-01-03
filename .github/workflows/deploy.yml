@@ -49,21 +49,18 @@ jobs:
                 
             - name: Upload build artifact
               uses: actions/upload-pages-artifact@v3
+
+            - uses: actions/upload-artifact@v4
+              id: artifact-upload
               with:
                 name: build_outputs
-
-            - name: Download a single artifact
-              uses: actions/download-artifact@v4
-              with:
-                name: build_outputs
-
-            - name: Temp - Display structure of downloaded files
-              run: ls -R
+                path: dist
 
             - name: Attest
               uses: actions/attest-build-provenance@v2
               with:
-                subject-path: build_outputs
+                subject-name: build_outputs
+                subject-digest: 'sha256:${{ steps.artifact-upload.outputs.artifact-id }}'
 
             - name: Deploy to GitHub Pages
               id: deployment
