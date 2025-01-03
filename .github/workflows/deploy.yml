@@ -57,10 +57,13 @@ jobs:
               with:
                 name: build_outputs
 
+            - name: Temp - Display structure of downloaded files
+              run: ls -R
+
             - name: Attest
               uses: actions/attest-build-provenance@v2
               with:
-                subject-path: build_outputs.zip
+                subject-path: build_outputs
 
             - name: Deploy to GitHub Pages
               id: deployment
